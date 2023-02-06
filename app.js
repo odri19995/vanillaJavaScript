@@ -2,17 +2,21 @@ const h1 =document.querySelector("div.hello:first-child h1");
 
 function handleTitleClick(){
     const clickedClass = "clicked";
-    if (h1.className == clickedClass){
-        h1.className ="";
+    if (h1.classList.contains(clickedClass)) {
+        h1.classList.remove(clickedClass);
     }else {
-        h1.className = clickedClass;
+        h1.classList.add(clickedClass);
     }// 변수를 잘못 쓴다면 console에서 오류가 출력된다. 
 }
 
 window.addEventListener("click",handleTitleClick); 
 
+/* classList 우리가 class들의 목록으로 작업할수 있게끔 허용해준다.
+className은 이전calss를 상관하지않고 모든걸 교체해 버린다.
 
-/*만약 h1.에 class가 초기에 있어도 그냥 덮어써버린다. 
-우리가 정말로 해줘야 하는건, JavaScript로 모든 class name을 변경하지 않는 것이다.
-우리는 원래 있던 class name을 간직하고 싶다. sexy-font를 간직하고 싶다.
-우리는 이 sexy-font를 삭제하지 않고, clicked class를 변경하고 싶다. */
+classList를 이용하는건
+js에서 건드리는건 HTML element가 가지고있는 또하나의 요소 사용하는 것이다.
+= element의 class내용물을 조작하는 것을 허용한다는 뜻
+
+contains은 우리가 명시한 class가 HTML element의 class에 포함되어 있는지 말해준다
+ */
