@@ -1,37 +1,18 @@
-const title =document.querySelector("div.hello:first-child h1");
+const h1 =document.querySelector("div.hello:first-child h1");
 
 function handleTitleClick(){
-    title.style.color = "blue";
+    const clickedClass = "clicked";
+    if (h1.className == clickedClass){
+        h1.className ="";
+    }else {
+        h1.className = clickedClass;
+    }// 변수를 잘못 쓴다면 console에서 오류가 출력된다. 
 }
 
-function handleMouseEnter(){
-    title.innerText = "Mouse is here!";
-}
+window.addEventListener("click",handleTitleClick); 
 
-function handleMouseLeave(){
-    title.innerText = "Mouse is gone!";
-}
 
-function handleWindowResize(){
-    document.body.style.backgroundColor = "tomato";  //여기 body 자리에 title이 들어갈수 있는데 그 타이틀은 HTML title이다.
-}
-
-function handleWindowCopy(){
-    alert("copier!");
-}
-
-function handleWindowOffline(){
-    alert("no WIFI");
-}
-
-function handleWindowOnline(){
-    alert("good signal!");
-}
-
-title.addEventListener("click",handleTitleClick);
-title.addEventListener("mouseenter",handleMouseEnter);
-title.addEventListener("mouseleave",handleMouseLeave);
-window.addEventListener("resize",handleWindowResize); //예) 창모드나 콘솔창을 열어 사이즈가 줄어들면 토마토가 된다.
-window.addEventListener("copy",handleWindowCopy);
-window.addEventListener("offline",handleWindowOffline);
-window.addEventListener("online",handleWindowOnline);
+/*만약 h1.에 class가 초기에 있어도 그냥 덮어써버린다. 
+우리가 정말로 해줘야 하는건, JavaScript로 모든 class name을 변경하지 않는 것이다.
+우리는 원래 있던 class name을 간직하고 싶다. sexy-font를 간직하고 싶다.
+우리는 이 sexy-font를 삭제하지 않고, clicked class를 변경하고 싶다. */
