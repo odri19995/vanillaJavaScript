@@ -1,13 +1,10 @@
+const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
-const loginButton = document.querySelector("#login-form button");
 
-function onLoginBtnClick(){
+//미션 1. form을 submit 할 때 입력값을 받아낸다. -> console창에 나타났다 사라진다. 성공.
+function onLoginSubmit(){
     const username = loginInput.value;
-    if (username === ""){
-        alert("Please write your name");
-    }else if (username.length > 15){
-        alert("Your name is too long.")
-    }
+    console.log("")
 }
 
-loginButton.addEventListener("click", onLoginBtnClick);
+loginForm.addEventListener("submit", onLoginSubmit)
