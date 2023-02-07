@@ -1,19 +1,14 @@
-const h1 =document.querySelector("div.hello:first-child h1");
+// const loginForm = document.getElementById("login-form");
+// const loginInput =loginForm.querySelector("input");
+// const loginButton =loginForm.querySelector("button");//우리가 정의한 loginFrom에서 찾을 수 있다.
 
-function handleTitleClick(){
-    
-    h1.classList.toggle("clicked"); //한줄의 코드로 5줄을 대체했다.
- 
+//더 짧게 
+const loginInput = document.querySelector("#login-form input");
+const loginButton = document.querySelector("#login-form button");
+
+function onLoginBtnClick(){
+    //console.dir(loginInput); loginInput의 내부를 보여준다. //입력하면 value로 들어간다.
+    console.log("hello", loginInput.value);
 }
 
-window.addEventListener("click",handleTitleClick); 
-
-/* 
-toggle은 토큰이 존재하면 토큰제거
-토큰존재 하지않으면 토큰 추가
-
-toggle은 h1의 classList에 clicked class가 이미있는지 확인하여
-만약있다면 toggle 이 clicked를 제거해준다
-만약 class name이 존재하지 않는다면 toggle은 classname 추가
-있으면 제거 없으면 생성 !!!
- */
+loginButton.addEventListener("click", onLoginBtnClick);
