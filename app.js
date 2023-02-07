@@ -6,11 +6,12 @@ const HIDDEN_CLASSNAME = "hidden"; // 일반적으로 string만 포함된 변수
 
 function onLoginSubmit(event){
     event.preventDefault();
+    loginForm.classList.add(HIDDEN_CLASSNAME);// 입력받았으니 hidden으로 숨겨준다.
     const username = loginInput.value;
-    loginForm.classList.add(HIDDEN_CLASSNAME);
+    localStorage.setItem("username",username)
     // greeting.innerText ="Hello " + username; 
     greeting.innerText = `Hello ${username} !`; //둘다 string과 변수를 합쳐주고 있다. ` ` 백틱 기호로 시작 중간에 변수만 추가 가능
-    greeting.classList.remove(HIDDEN_CLASSNAME)//hidden을 두번 사용하는걸 방지하가위해서 상수 선언
+    greeting.classList.remove(HIDDEN_CLASSNAME)//hidden을 두번 사용하는걸 방지하기 위해서 상수 선언 // hidden class 제거 text가 드러난다.
 }
 
 
