@@ -47,5 +47,5 @@ const quotes = [
   const todaysQuote = quotes[Math.floor(Math.random() * quotes.length)]; //Array에 랜덤 접근  Math.random() 0부터 1사이에 값 제공 0<=Math.random<1
   // Math.round = 반올림, Math.ceil(천장) 올림 , Math.floor(바닥 ) : 버림
   
-  quote.innerText = todaysQuote.quote; //화면에 출력 innerText 명언이 위로 저자가 아래로
+  quote.innerText = todaysQuote.quote; //화면에 출력 innerText
   author.innerText = todaysQuote.author;
