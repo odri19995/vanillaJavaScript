@@ -12,15 +12,17 @@ function saveToDos() {
 
 function deleteToDo(event) {
   const li = event.target.parentElement;
-  console.log(li.id); //지워진 id도 확인 가능
   li.remove();
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));// 우리가 클릭한 li와 다른 li는 남겨두고 싶다. 
+  //li.id는 string 타입 toDo.id는 number 타입 확인방법 console.log(typeof li.id);
+  saveToDos();//toDos DB에서 todo를 지운 뒤에 saveToDoes를 한번 더 불러줘야한다. 이전 array를 지우고 지운값을 다시 저장해준다고 보면된다.
 }
 
-function paintToDo(newTodo) { //paintTodo는 이제 text가 아니라 object를 받는다.
+function paintToDo(newTodo) { 
   const li = document.createElement("li"); 
   li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo.text; //newTodo object에서 text만 가져오고 싶다.
+  span.innerText = newTodo.text; 
   const button =document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click",deleteToDo);
