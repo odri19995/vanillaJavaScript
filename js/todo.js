@@ -7,18 +7,20 @@ const TODOS_KEY ="todos"
 let toDos = [];
 
 function saveToDos() {
-  localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); //JSON.stringify 브라우저가 가진 기능 =object나 array나 어떤 것이든 string으로 바꿔줌
+  localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
 function deleteToDo(event) {
   const li = event.target.parentElement;
+  console.log(li.id); //지워진 id도 확인 가능
   li.remove();
 }
 
-function paintToDo(newTodo) {
+function paintToDo(newTodo) { //paintTodo는 이제 text가 아니라 object를 받는다.
   const li = document.createElement("li"); 
+  li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo; 
+  span.innerText = newTodo.text; //newTodo object에서 text만 가져오고 싶다.
   const button =document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click",deleteToDo);
@@ -31,8 +33,12 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value;  
   toDoInput.value = ""; 
-  toDos.push(newTodo); //빈 리스트에 newTodo값을 넣어준다. 하지만 local storage에는 리스트는 저장이 안된다. 단지 텍스트만 저장 가능
-  paintToDo(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(), //랜덤한 id만드는 법 초마다 다르기 때문에 다른 숫자를 줄것이다.
+  };
+  toDos.push(newTodoObj); //text 대신 object를 넣어주고 싶다. 
+  paintToDo(newTodoObj);
   saveToDos();
 }
 
@@ -41,13 +47,13 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if(savedToDos !== null){
-  const parsedToDos = JSON.parse(savedToDos); //string을 JS가 이해하 할 수 있는 리스트로 바꿔준다.
-  toDos = parsedToDos; //비어있지 않으면 예전에 저장된 값을 불러오고 싶다.
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos;
   parsedToDos.forEach(paintToDo);
-  // parsedToDos.forEach((item) => console.log("this is the turn of ", item));// arrow function(화살표 함수) 함수를 안쓰고 짧게 작성하는것
-  //Js는 이 function을 호출 하면서 array에 있는 각각의 item을 준다. 한 함수를 여러번 호출하는게 아니다. !!!! 중요 !!!!!
-  //sayHello("a")-> sayHello("b")->sayHello("c")
-  //하지만 이건 이 array의 item들에 대해 한 개의 function만 실행할 수 있게 해줌 ex)parsedToDos.forEach(헬로호출 함수) hello * 리스트요소 개수
-  //Js는 이벤트리스터가 event(argument)를 그냥 제공해 주는 것처럼 지금 처리되고 있는 item 또한 제공해준다.
-  //헬로 함수에 item를 넣어 list[0] hello, list[1] hello 가 가능해진다.
+
 }
+
+//지울 때마다 지워진것을 localStorage에 반영하고 싶다. 
+//deleteToDo는 화면에서 어떤 HTML의 element를 알고 있지만 어떤 todo text를 지워야 하는지 모른다.
+//만약 a가 두개 일경우 어떤 건지 알 수 없다. 
+//todo들에게 ID같은 걸 주고 싶다.  text대신에 object를 만들고 싶다. 
