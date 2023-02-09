@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h2 id = "clock">00:00:00</h2>
     <form class = "hidden" id ="login-form">
         <input 
         required
@@ -18,9 +19,11 @@
          placeholder="What is your name?" />
         <button>Log In</button>
     </form>
-    <h2 id = "clock">00:00:00</h2>
-    <!-- 줄바꿈 alt + ↑  및 주석쓰는 법 -->
     <h1 class="hidden" id = "greeting" ></h1>
+    <form id="todo-form">
+        <input type="text" placeholder="Write to do" required />
+    </form>
+    <ul id ="todo-list"></ul><!-- to do list javascript로 li를 만들 것이다.-->
     <div id = "quote">
         <span></span>
         <span></span>
@@ -29,6 +32,7 @@
     <script src="js/clock.js"></script>
     <script src="js/quotes.js"></script>
     <script src="js/background.js"></script>
+    <script src="js/todo.js"></script>
 </body>
 
 </html>
